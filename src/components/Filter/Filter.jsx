@@ -1,29 +1,20 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-// export class FilterClass extends Component {
-//   static propTypes = {
-//     onFilter: PropTypes.func.isRequired,
-//     filter: PropTypes.string,
-//   };
+export const Filter = ({ onFilter }) => {
+  const [filter, setFilter] = useState("");
 
-//   render() {
-//     const { filter, onFilter } = this.props;
-
-//     return (
-//       <label>
-//         Find contacts by name
-//         <input type="text" onChange={onFilter} value={filter} />
-//       </label>
-//     );
-//   }
-// }
-
-export const Filter = ({onFilter, filter}) => {
+  const handleFilterForm = e => {
+    const value = e.target.value;
+    setFilter(value)
+  }
+  
+  onFilter(filter)
 
     return (
       <label>
         Find contacts by name
-        <input type="text" onChange={onFilter} value={filter} />
+        <input type="text" onChange={handleFilterForm} value={filter} />
       </label>
     );
 }
