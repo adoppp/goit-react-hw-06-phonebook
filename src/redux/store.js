@@ -1,5 +1,8 @@
 import { createStore } from "redux";
 import { devToolsEnhancer } from "@redux-devtools/extension";
+import { persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import persistReducer from "redux-persist/es/persistReducer";
 
 const initialState = {
     contacts: [
@@ -40,6 +43,15 @@ const rootReducer = (state = initialState, action) => {
   }
 };
 
+const persistConfig = {
+    key: 'root',
+    storage
+}
+
+const persisedReducer = persistReducer(persistConfig, rootReducer)
+
 const enhancer = devToolsEnhancer();
 
-export const store = createStore(rootReducer, enhancer);
+export const store = createStore(persisedReducer, enhancer);
+
+export const persistor = persistStore(store);

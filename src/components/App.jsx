@@ -9,8 +9,6 @@ import { useDispatch } from 'react-redux';
 import { addContacts, deleteContacts, filterAction } from 'redux/actions';
 
 export const App = () => {
-  // const [filter, setFilter] = useState('');
-
   const contacts = useSelector(state => state.contacts);
   const filter = useSelector(state => state.filter);
 
@@ -25,7 +23,6 @@ export const App = () => {
       return;
     };
 
-    // setContacts([...contacts, contact]);
     dispatch(addContacts(id, name, number))
   };
 
@@ -36,17 +33,8 @@ export const App = () => {
     }
   }, [contacts]);
 
-  
-  // useEffect(() => {
-  //   const localStorageContacts = JSON.parse(window.localStorage.getItem('contacts'));
-  //   console.log(localStorageContacts)
-  //   if (localStorageContacts) {
-  //     dispatch(localStorageContactsAction(localStorageContacts))
-  //   }
-  // }, []);
 
   const handleDeleteContact = id => {
-    // setContacts(contacts.filter(contact => contact.id !== id))
     dispatch(deleteContacts(id))
   };
 
